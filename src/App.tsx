@@ -1,20 +1,25 @@
 import { useState } from "react";
-import { Heart, MapPin, Clock, Calendar, Gift, Home as HomeIcon, Phone, Mail, Utensils, Bed, Car } from "lucide-react";
+import { Heart, MapPin, Clock, Calendar, Gift, Home as HomeIcon, Phone, Mail, Utensils, Bed, Car, Menu, X } from "lucide-react";
 import { Button } from "./components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "./components/ui/card";
 import { Input } from "./components/ui/input";
 import { Textarea } from "./components/ui/textarea";
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "./components/ui/form";
 import couplePhoto from "@assets/couple-photo.jpeg";
+import propostaPhoto from "@assets/proposta.jpg";
+import storiaPhoto from "@assets/storia-amore.jpg";
+import sconosciutiPhoto from "@assets/conosciuti-photo.jpg";
 
 export default function Home() {
   const [activeSection, setActiveSection] = useState("home");
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   const scrollToSection = (id: string) => {
     const element = document.getElementById(id);
     if (element) {
       element.scrollIntoView({ behavior: "smooth" });
       setActiveSection(id);
+      setMobileMenuOpen(false); // Chiudi il menu dopo aver cliccato
     }
   };
 
@@ -31,6 +36,8 @@ export default function Home() {
             >
               E & M
             </button>
+            
+            {/* Desktop Menu */}
             <div className="hidden md:flex items-center gap-1">
               {[
                 { id: "home", label: "Home" },
@@ -51,8 +58,50 @@ export default function Home() {
                 </Button>
               ))}
             </div>
+
+            {/* Mobile Menu Button */}
+            <button
+              className="md:hidden p-2 rounded-md hover:bg-accent transition-colors"
+              onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+              aria-label="Toggle menu"
+            >
+              {mobileMenuOpen ? (
+                <X className="w-6 h-6" />
+              ) : (
+                <Menu className="w-6 h-6" />
+              )}
+            </button>
           </div>
         </div>
+
+        {/* Mobile Menu */}
+        {mobileMenuOpen && (
+          <div className="md:hidden bg-background border-t border-border">
+            <div className="px-4 py-2 space-y-1">
+              {[
+                { id: "home", label: "Home" },
+                { id: "storia", label: "La Nostra Storia" },
+                { id: "grande-giorno", label: "Il Grande Giorno" },
+                { id: "rsvp", label: "RSVP" },
+                { id: "lista-nozze", label: "Lista Nozze" },
+                { id: "info", label: "Info Utili" },
+              ].map((item) => (
+                <button
+                  key={item.id}
+                  onClick={() => scrollToSection(item.id)}
+                  className={`w-full text-left px-4 py-3 rounded-md transition-colors ${
+                    activeSection === item.id 
+                      ? "bg-accent text-accent-foreground" 
+                      : "hover:bg-accent/50"
+                  }`}
+                  data-testid={`button-nav-mobile-${item.id}`}
+                >
+                  {item.label}
+                </button>
+              ))}
+            </div>
+          </div>
+        )}
       </nav>
 
       {/* Hero Section */}
@@ -81,7 +130,7 @@ export default function Home() {
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4 text-white/90 text-lg sm:text-xl mb-12">
             <div className="flex items-center gap-2" data-testid="text-wedding-date">
               <Calendar className="w-5 h-5" />
-              <span>18 Luglio 2025</span>
+              <span>18 Luglio 2026</span>
             </div>
             <span className="hidden sm:inline">•</span>
             <div className="flex items-center gap-2" data-testid="text-wedding-location">
@@ -120,7 +169,7 @@ export default function Home() {
             La Nostra Storia
           </h2>
           <p className="text-center text-muted-foreground text-lg mb-16 max-w-2xl mx-auto">
-            Un viaggio d'amore che ci ha portato fino a qui
+            Un viaggio d'amore che ci ha portato fin qui
           </p>
 
           <div className="space-y-16 sm:space-y-20 md:space-y-24 relative">
@@ -139,9 +188,9 @@ export default function Home() {
                   </CardHeader>
                   <CardContent className="space-y-4">
                     <img 
-                      src={couplePhoto} 
+                      src={sconosciutiPhoto} 
                       alt="Foto della coppia" 
-                      className="w-full h-48 object-cover rounded-lg"
+                      className="w-full h-78 object-cover rounded-lg"
                     />
                     <p className="text-muted-foreground leading-relaxed">
                       Era una tiepida sera di primavera del 2018. I nostri sguardi si sono incrociati per la prima volta
@@ -181,9 +230,9 @@ export default function Home() {
                   </CardHeader>
                   <CardContent className="space-y-4">
                     <img 
-                      src={couplePhoto} 
+                      src={storiaPhoto} 
                       alt="Foto della coppia" 
-                      className="w-full h-48 object-cover rounded-lg"
+                      className="w-full h-78 object-cover rounded-lg"
                     />
                     <p className="text-muted-foreground leading-relaxed">
                       Da quel momento abbiamo trascorso insieme ogni istante possibile. Lunghe passeggiate al tramonto,
@@ -207,13 +256,13 @@ export default function Home() {
                   </CardHeader>
                   <CardContent className="space-y-4">
                     <img 
-                      src={couplePhoto} 
+                      src={propostaPhoto} 
                       alt="Foto della coppia" 
-                      className="w-full h-48 object-cover rounded-lg"
+                      className="w-full h-78 object-cover rounded-lg"
                     />
                     <p className="text-muted-foreground leading-relaxed">
-                      Durante un weekend a Venezia, sotto il ponte di Rialto illuminato dalle stelle, Alessandro ha
-                      chiesto a Maria di sposarlo. Con le lacrime agli occhi e il cuore che batteva forte, Maria ha
+                      Durante un weekend a Venezia, sotto il ponte di Rialto illuminato dalle stelle, Ettore ha
+                      chiesto a Monica di sposarlo. Con le lacrime agli occhi e il cuore che batteva forte, Monica ha
                       detto sì. È stato il momento più magico delle nostre vite.
                     </p>
                   </CardContent>
@@ -256,8 +305,8 @@ export default function Home() {
                 <div className="flex items-start gap-3">
                   <Calendar className="w-5 h-5 text-muted-foreground mt-0.5 flex-shrink-0" />
                   <div>
-                    <p className="font-medium text-card-foreground">15 Giugno 2025</p>
-                    <p className="text-sm text-muted-foreground">Domenica</p>
+                    <p className="font-medium text-card-foreground">18 Luglio 2026</p>
+                    <p className="text-sm text-muted-foreground">Sabato</p>
                   </div>
                 </div>
                 <div className="flex items-start gap-3">
@@ -299,8 +348,8 @@ export default function Home() {
                 <div className="flex items-start gap-3">
                   <Calendar className="w-5 h-5 text-muted-foreground mt-0.5 flex-shrink-0" />
                   <div>
-                    <p className="font-medium text-card-foreground">15 Giugno 2025</p>
-                    <p className="text-sm text-muted-foreground">Domenica</p>
+                    <p className="font-medium text-card-foreground">18 Luglio 2026</p>
+                    <p className="text-sm text-muted-foreground">Sabato</p>
                   </div>
                 </div>
                 <div className="flex items-start gap-3">
@@ -354,7 +403,7 @@ export default function Home() {
             <CardContent className="space-y-3 text-left">
               <div>
                 <p className="text-sm text-muted-foreground">Intestatario</p>
-                <p className="font-medium text-card-foreground" data-testid="text-bank-holder">Alessandro Rossi & Maria Bianchi</p>
+                <p className="font-medium text-card-foreground" data-testid="text-bank-holder">Ettore De Domenico & Monica Bardetta</p>
               </div>
               <div>
                 <p className="text-sm text-muted-foreground">IBAN</p>
@@ -366,7 +415,7 @@ export default function Home() {
               </div>
               <div>
                 <p className="text-sm text-muted-foreground">Causale</p>
-                <p className="font-medium text-card-foreground">Regalo Matrimonio Alessandro & Maria</p>
+                <p className="font-medium text-card-foreground">Regalo Matrimonio Ettore & Monica</p>
               </div>
             </CardContent>
           </Card>
@@ -443,28 +492,28 @@ export default function Home() {
               </CardHeader>
               <CardContent className="space-y-4">
                 <div>
-                  <p className="font-medium text-card-foreground mb-2">Alessandro</p>
+                  <p className="font-medium text-card-foreground mb-2">Ettore</p>
                   <div className="space-y-1">
                     <p className="text-sm text-muted-foreground flex items-center gap-2">
                       <Phone className="w-4 h-4" />
-                      <span data-testid="text-contact-phone-alessandro">+39 333 1234567</span>
+                      <span data-testid="text-contact-phone-alessandro">+39 348 4982550</span>
                     </p>
                     <p className="text-sm text-muted-foreground flex items-center gap-2">
                       <Mail className="w-4 h-4" />
-                      <span data-testid="text-contact-email-alessandro">alessandro@email.it</span>
+                      <span data-testid="text-contact-email-alessandro">ettore@email.it</span>
                     </p>
                   </div>
                 </div>
                 <div>
-                  <p className="font-medium text-card-foreground mb-2">Maria</p>
+                  <p className="font-medium text-card-foreground mb-2">Monica</p>
                   <div className="space-y-1">
                     <p className="text-sm text-muted-foreground flex items-center gap-2">
                       <Phone className="w-4 h-4" />
-                      <span data-testid="text-contact-phone-maria">+39 333 7654321</span>
+                      <span data-testid="text-contact-phone-maria">+39 3406911073</span>
                     </p>
                     <p className="text-sm text-muted-foreground flex items-center gap-2">
                       <Mail className="w-4 h-4" />
-                      <span data-testid="text-contact-email-maria">maria@email.it</span>
+                      <span data-testid="text-contact-email-maria">monica@email.it</span>
                     </p>
                   </div>
                 </div>
@@ -487,7 +536,7 @@ export default function Home() {
           >
             E & M
           </div>
-          <p className="text-muted-foreground mb-2">15 Giugno 2025 • Roma, Italia</p>
+          <p className="text-muted-foreground mb-2"> 18 Luglio 2026 • Messina, Italia</p>
           <p className="text-sm text-muted-foreground">
             Non vediamo l'ora di celebrare con voi!
           </p>
@@ -526,10 +575,10 @@ function RSVPSection() {
         </h2>
         <p className="text-center text-muted-foreground text-lg mb-12 max-w-xl mx-auto">
           Sarà un onore averti con noi nel nostro giorno speciale. Per favore, conferma la tua partecipazione
-          entro il 1 Maggio 2025.
+          entro il 1 Maggio 2026.
         </p>
 
-        <Card data-testid="card-rsvp-form">
+        <Card data-testid = "card-rsvp-form">
           <CardHeader>
             <CardTitle className="font-serif text-2xl">Dettagli Partecipazione</CardTitle>
             <CardDescription>
