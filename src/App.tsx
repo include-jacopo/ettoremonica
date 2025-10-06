@@ -29,7 +29,7 @@ export default function Home() {
               className="font-serif text-xl font-semibold text-foreground hover-elevate rounded-md px-3 py-1.5"
               data-testid="button-logo"
             >
-              A & M
+              E & M
             </button>
             <div className="hidden md:flex items-center gap-1">
               {[
@@ -73,7 +73,7 @@ export default function Home() {
             style={{ fontFamily: "'Dancing Script', cursive" }}
             data-testid="text-couple-names"
           >
-            Alessandro & Maria
+            Ettore & Monica
           </h1>
           <p className="text-xl sm:text-2xl md:text-3xl text-white/95 font-serif mb-8" data-testid="text-welcome-message">
             Celebriamo il nostro amore
@@ -81,12 +81,12 @@ export default function Home() {
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4 text-white/90 text-lg sm:text-xl mb-12">
             <div className="flex items-center gap-2" data-testid="text-wedding-date">
               <Calendar className="w-5 h-5" />
-              <span>15 Giugno 2025</span>
+              <span>18 Luglio 2025</span>
             </div>
             <span className="hidden sm:inline">•</span>
             <div className="flex items-center gap-2" data-testid="text-wedding-location">
               <MapPin className="w-5 h-5" />
-              <span>Roma, Italia</span>
+              <span>Messina, Italia</span>
             </div>
           </div>
           <Button
@@ -485,7 +485,7 @@ export default function Home() {
             style={{ fontFamily: "'Dancing Script', cursive" }}
             data-testid="text-footer-initials"
           >
-            A & M
+            E & M
           </div>
           <p className="text-muted-foreground mb-2">15 Giugno 2025 • Roma, Italia</p>
           <p className="text-sm text-muted-foreground">
