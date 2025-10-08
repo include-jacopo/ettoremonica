@@ -5,7 +5,7 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "./com
 import { Input } from "./components/ui/input";
 import { Textarea } from "./components/ui/textarea";
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "./components/ui/form";
-import couplePhoto from "@assets/couple-photo.jpeg";
+import couplePhoto from "@assets/couple-photo.jpg";
 import propostaPhoto from "@assets/proposta.jpg";
 import storiaPhoto from "@assets/storia-amore.jpg";
 import sconosciutiPhoto from "@assets/conosciuti-photo.jpg";
@@ -29,14 +29,14 @@ export default function Home() {
       <nav className="fixed top-0 left-0 right-0 z-50 bg-background/80 backdrop-blur-md border-b border-border">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex items-center justify-between h-16">
-            <button 
+            <button
               onClick={() => scrollToSection("home")}
               className="font-serif text-xl font-semibold text-foreground hover-elevate rounded-md px-3 py-1.5"
               data-testid="button-logo"
             >
               E & M
             </button>
-            
+
             {/* Desktop Menu */}
             <div className="hidden md:flex items-center gap-1">
               {[
@@ -89,11 +89,10 @@ export default function Home() {
                 <button
                   key={item.id}
                   onClick={() => scrollToSection(item.id)}
-                  className={`w-full text-left px-4 py-3 rounded-md transition-colors ${
-                    activeSection === item.id 
-                      ? "bg-accent text-accent-foreground" 
-                      : "hover:bg-accent/50"
-                  }`}
+                  className={`w-full text-left px-4 py-3 rounded-md transition-colors ${activeSection === item.id
+                    ? "bg-accent text-accent-foreground"
+                    : "hover:bg-accent/50"
+                    }`}
                   data-testid={`button-nav-mobile-${item.id}`}
                 >
                   {item.label}
@@ -106,18 +105,19 @@ export default function Home() {
 
       {/* Hero Section */}
       <section id="home" className="relative min-h-screen flex items-center justify-center overflow-hidden">
-        <div 
+        <div
           className="absolute inset-0 bg-cover bg-center bg-no-repeat"
           style={{
             backgroundImage: `url(${couplePhoto})`,
+            filter: "blur(3px)"
           }}
         >
           <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-black/50 to-black/70" />
         </div>
-        
+
         <div className="relative z-10 text-center px-4 max-w-4xl mx-auto">
           <Heart className="w-16 h-16 mx-auto mb-8 text-primary" />
-          <h1 
+          <h1
             className="font-script text-6xl sm:text-7xl md:text-8xl lg:text-9xl text-white mb-6"
             style={{ fontFamily: "'Dancing Script', cursive" }}
             data-testid="text-couple-names"
@@ -163,21 +163,24 @@ export default function Home() {
       </section>
 
       {/* Story Section */}
-      <section id="storia" className="py-20 sm:py-24 md:py-32 px-4">
+      <section id="storia" className="py-16 sm:py-24 md:py-32 px-4">
         <div className="max-w-6xl mx-auto">
-          <h2 className="font-serif text-4xl sm:text-5xl md:text-6xl text-center mb-4 text-foreground" data-testid="heading-story">
+          <h2
+            className="font-serif text-4xl sm:text-5xl md:text-6xl text-center mb-4 text-foreground"
+            data-testid="heading-story"
+          >
             La Nostra Storia
           </h2>
           <p className="text-center text-muted-foreground text-lg mb-16 max-w-2xl mx-auto">
             Un viaggio d'amore che ci ha portato fin qui
           </p>
 
-          <div className="space-y-16 sm:space-y-20 md:space-y-24 relative">
+          <div className="relative flex flex-col gap-8 sm:gap-20 md:gap-24">
             {/* Timeline line */}
             <div className="absolute left-8 sm:left-1/2 top-0 bottom-0 w-0.5 bg-border hidden sm:block" />
 
             {/* Story Item 1 */}
-            <div className="flex flex-col sm:flex-row gap-8 items-start sm:items-center">
+            <div className="flex flex-col sm:flex-row gap-0 items-start sm:items-center sm:py-0">
               <div className="flex-1 sm:text-right" data-testid="card-story-met">
                 <Card className="hover-elevate transition-all duration-300">
                   <CardHeader>
@@ -187,9 +190,9 @@ export default function Home() {
                     </CardTitle>
                   </CardHeader>
                   <CardContent className="space-y-4">
-                    <img 
-                      src={sconosciutiPhoto} 
-                      alt="Foto della coppia" 
+                    <img
+                      src={sconosciutiPhoto}
+                      alt="Foto della coppia"
                       className="w-full h-78 object-cover rounded-lg"
                     />
                     <p className="text-muted-foreground leading-relaxed">
@@ -201,9 +204,9 @@ export default function Home() {
                 </Card>
               </div>
               <div className="hidden sm:block w-20 h-20 rounded-full border-4 border-primary bg-background flex-shrink-0 relative z-10 overflow-hidden">
-                <img 
-                  src={couplePhoto} 
-                  alt="Foto della coppia" 
+                <img
+                  src={sconosciutiPhoto}
+                  alt="Foto della coppia"
                   className="w-full h-full object-cover"
                 />
               </div>
@@ -211,12 +214,12 @@ export default function Home() {
             </div>
 
             {/* Story Item 2 */}
-            <div className="flex flex-col sm:flex-row gap-8 items-start sm:items-center">
+            <div className="flex flex-col sm:flex-row gap-4 items-start sm:items-center py-4 sm:py-0">
               <div className="flex-1" />
               <div className="hidden sm:block w-20 h-20 rounded-full border-4 border-primary bg-background flex-shrink-0 relative z-10 overflow-hidden">
-                <img 
-                  src={couplePhoto} 
-                  alt="Foto della coppia" 
+                <img
+                  src={storiaPhoto}
+                  alt="Foto della coppia"
                   className="w-full h-full object-cover"
                 />
               </div>
@@ -229,9 +232,9 @@ export default function Home() {
                     </CardTitle>
                   </CardHeader>
                   <CardContent className="space-y-4">
-                    <img 
-                      src={storiaPhoto} 
-                      alt="Foto della coppia" 
+                    <img
+                      src={storiaPhoto}
+                      alt="Foto della coppia"
                       className="w-full h-78 object-cover rounded-lg"
                     />
                     <p className="text-muted-foreground leading-relaxed">
@@ -245,7 +248,7 @@ export default function Home() {
             </div>
 
             {/* Story Item 3 */}
-            <div className="flex flex-col sm:flex-row gap-8 items-start sm:items-center">
+            <div className="flex flex-col sm:flex-row gap-2 items-start sm:items-center py-4 sm:py-0">
               <div className="flex-1 sm:text-right" data-testid="card-story-proposal">
                 <Card className="hover-elevate transition-all duration-300">
                   <CardHeader>
@@ -255,9 +258,9 @@ export default function Home() {
                     </CardTitle>
                   </CardHeader>
                   <CardContent className="space-y-4">
-                    <img 
-                      src={propostaPhoto} 
-                      alt="Foto della coppia" 
+                    <img
+                      src={propostaPhoto}
+                      alt="Foto della coppia"
                       className="w-full h-78 object-cover rounded-lg"
                     />
                     <p className="text-muted-foreground leading-relaxed">
@@ -269,9 +272,9 @@ export default function Home() {
                 </Card>
               </div>
               <div className="hidden sm:block w-20 h-20 rounded-full border-4 border-primary bg-background flex-shrink-0 relative z-10 overflow-hidden">
-                <img 
-                  src={couplePhoto} 
-                  alt="Foto della coppia" 
+                <img
+                  src={propostaPhoto}
+                  alt="Foto della coppia"
                   className="w-full h-full object-cover"
                 />
               </div>
@@ -280,6 +283,7 @@ export default function Home() {
           </div>
         </div>
       </section>
+
 
       {/* Wedding Day Section */}
       <section id="grande-giorno" className="py-20 sm:py-24 md:py-32 px-4 bg-card">
@@ -529,7 +533,7 @@ export default function Home() {
       {/* Footer */}
       <footer className="py-12 px-4 border-t border-border">
         <div className="max-w-6xl mx-auto text-center">
-          <div 
+          <div
             className="text-4xl sm:text-5xl font-script mb-4 text-primary"
             style={{ fontFamily: "'Dancing Script', cursive" }}
             data-testid="text-footer-initials"
@@ -553,7 +557,7 @@ function RSVPSection() {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    
+
     // Crea il corpo dell'email
     const subject = encodeURIComponent("Conferma Presenza Matrimonio - " + guestName);
     const body = encodeURIComponent(
@@ -561,7 +565,7 @@ function RSVPSection() {
       `Numero di Persone: ${numberOfGuests}\n` +
       `Allergie o Intolleranze Alimentari: ${dietaryRestrictions || "Nessuna"}`
     );
-    
+
     // Apri il client email
     window.location.href = `mailto:jacopopati@gmail.com?subject=${subject}&body=${body}`;
   };
@@ -578,7 +582,7 @@ function RSVPSection() {
           entro il 1 Maggio 2026.
         </p>
 
-        <Card data-testid = "card-rsvp-form">
+        <Card data-testid="card-rsvp-form">
           <CardHeader>
             <CardTitle className="font-serif text-2xl">Dettagli Partecipazione</CardTitle>
             <CardDescription>
